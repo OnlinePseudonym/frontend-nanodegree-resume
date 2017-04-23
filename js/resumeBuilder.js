@@ -12,9 +12,9 @@ var bio = {
     "JS", "HTML", "CSS", "Python"
   ],
   "biopic" : "images/kevin.jpg",
-  "display":function(){
-    var formattedName = HTMLheaderName.replace("%data%",bio.name);
-    var formattedRole = HTMLheaderRole.replace("%data%",bio.role);
+  "display": function() {
+    var formattedName = HTMLheaderName.replace("%data%", bio.name);
+    var formattedRole = HTMLheaderRole.replace("%data%", bio.role);
     $("#header").prepend(formattedName + formattedRole);
 
     var formattedMobile = HTMLmobile.replace("%data%", bio.contacts.mobile);
@@ -38,7 +38,7 @@ var bio = {
     $("#header").append(HTMLskillsStart);
     var formattedSkill = "";
     for (var indexCount = 0; indexCount < bio.skills.length; indexCount++){
-      formattedSkill = HTMLskills.replace("%data%",bio.skills[indexCount]);
+      formattedSkill = HTMLskills.replace("%data%", bio.skills[indexCount]);
       $("#skills").append(formattedSkill);
     }
   }
@@ -61,7 +61,7 @@ var work = {
       "description": "Customer service, deliveries, accounting, inside sales."
     }
   ],
-  "display":function(){
+  "display": function() {
     for(var indexCount = 0;indexCount < work.jobs.length;indexCount++){
       $("#workExperience").append(HTMLworkStart);
 
@@ -113,7 +113,7 @@ var education = {
       "url":"https://www.udacity.com/course/front-end-web-developer-nanodegree--nd001"
     }
   ],
-  "display":function(){
+  "display" : function() {
     for(var indexCount = 0; indexCount < education.schools.length; indexCount++){
       $("#education").append(HTMLschoolStart);
 
@@ -171,7 +171,7 @@ var projects = {
       ]
     }
   ],
-  "display":function() {
+  "display": function() {
     for (var indexCount = 0; indexCount < projects.projects.length; indexCount++){
       $("#projects").append(HTMLprojectStart);
 
