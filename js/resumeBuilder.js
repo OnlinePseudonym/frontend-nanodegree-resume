@@ -1,17 +1,38 @@
+/**
+* @description function to track where users are clicking on
+* website.
+* @param none
+* @return location of each user click
+*/
+$(document).click(function(loc) {
+  var x = loc.pageX;
+  var y = loc.pageY;
+
+  logClicks(x,y);
+});
+
 var bio = {
   "name" : "Kevin Reynolds",
   "role" : "Web Developer",
   "contacts" : {
     "mobile" : "480-262-8126",
-    "email" : "Kevin.T.Reynolds30@gmail.com",
-    "github" : "OnlinePseudonym",
+    "email" : "Kevin.T.Reyonlds30@gmail.com",
+    "github" : "https://github.com/OnlinePseudonym",
     "location" : "Phoenix"
   },
-  "welcomeMessage" : "Welcome to my life",
+  "welcomeMessage" : "Thank you for taking the time to view my resume!",
   "skills" : [
     "JS", "HTML", "CSS", "Python"
   ],
   "biopic" : "images/kevin.jpg",
+  /**
+  * @description Formats and displays elements of the bio
+  * variable by replacing "%data%" within various variables
+  * in helper.js with the elements of bio and appending/prepending
+  * them in index.html
+  * @param none
+  * @return updates index.html with elements of bio
+  */
   "display": function() {
     var formattedName = HTMLheaderName.replace("%data%", bio.name);
     var formattedRole = HTMLheaderRole.replace("%data%", bio.role);
@@ -61,6 +82,14 @@ var work = {
       "description": "Customer service, deliveries, accounting, inside sales."
     }
   ],
+  /**
+  * @description Formats and displays elements of the work
+  * variable by replacing "%data%" within various variables
+  * in helper.js with the elements of work and appending/prepending
+  * them in index.html
+  * @param none
+  * @return updates index.html with elements of work
+  */
   "display": function() {
     for(var indexCount = 0;indexCount < work.jobs.length;indexCount++){
       $("#workExperience").append(HTMLworkStart);
@@ -81,6 +110,54 @@ var work = {
     }
   }
 };
+
+var projects = {
+  "projects":[
+    {
+      "title":"Favorite Movies Website",
+      "dates":"March 2017",
+      "description":"A simple website listing a few of my favorite movies, displaying a trailer if you click on the box art and offering a link to reviews.",
+      "images":[
+        "images/fresh_tomatoes_1.jpg","images/fresh_tomatoes_2.jpg"
+      ]
+    },
+    {
+      "title":"Portfolio Website",
+      "dates":"April 2017",
+      "description":"A streamlined portfolio showcasing some recent projects.",
+      "images":[
+        "images/portfolio_project.jpg"
+      ]
+    }
+  ],
+  /**
+  * @description Formats and displays elements of the projects
+  * variable by replacing "%data%" within various variables
+  * in helper.js with the elements of projects and appending/prepending
+  * them in index.html
+  * @param none
+  * @return updates index.html with elements of projects
+  */
+  "display": function() {
+    for (var indexCount = 0; indexCount < projects.projects.length; indexCount++){
+      $("#projects").append(HTMLprojectStart);
+
+      var formattedProjectTitle = HTMLprojectTitle.replace("%data%", projects.projects[indexCount].title);
+      $(".project-entry:last").append(formattedProjectTitle);
+
+      var formattedProjectDates = HTMLprojectDates.replace("%data%", projects.projects[indexCount].dates);
+      $(".project-entry:last").append(formattedProjectDates);
+
+      var formattedProjectDescription = HTMLprojectDescription.replace("%data%", projects.projects[indexCount].description);
+      $(".project-entry:last").append(formattedProjectDescription);
+
+      for (var imageIndexCount = 0; imageIndexCount < projects.projects[indexCount].images.length; imageIndexCount++){
+        var formattedProjectImage = HTMLprojectImage.replace("%data%", projects.projects[indexCount].images[imageIndexCount]);
+        $(".project-entry:last").append(formattedProjectImage);
+      }
+    }
+  }
+}
 
 var education = {
   "schools": [
@@ -113,6 +190,14 @@ var education = {
       "url":"https://www.udacity.com/course/front-end-web-developer-nanodegree--nd001"
     }
   ],
+  /**
+  * @description Formats and displays elements of the education
+  * variable by replacing "%data%" within various variables
+  * in helper.js with the elements of education and appending/prepending
+  * them in index.html
+  * @param none
+  * @return updates index.html with elements of education
+  */
   "display" : function() {
     for(var indexCount = 0; indexCount < education.schools.length; indexCount++){
       $("#education").append(HTMLschoolStart);
@@ -152,45 +237,12 @@ var education = {
   }
 };
 
-var projects = {
-  "projects":[
-    {
-      "title":"Favorite Movies Website",
-      "dates":"March 2017",
-      "description":"A simple website listing a few of my favorite movies, displaying a trailer if you click on the box art and offering a link to reviews.",
-      "images":[
-        "images/fresh_tomatoes_1.jpg","images/fresh_tomatoes_2.jpg"
-      ]
-    },
-    {
-      "title":"Portfolio Website",
-      "dates":"April 2017",
-      "description":"A streamlined portfolio showcasing some recent projects.",
-      "images":[
-        "images/...jpg","images/...jpg"
-      ]
-    }
-  ],
-  "display": function() {
-    for (var indexCount = 0; indexCount < projects.projects.length; indexCount++){
-      $("#projects").append(HTMLprojectStart);
 
-      var formattedProjectTitle = HTMLprojectTitle.replace("%data%", projects.projects[indexCount].title);
-      $(".project-entry:last").append(formattedProjectTitle);
-
-      var formattedProjectDates = HTMLprojectDates.replace("%data%", projects.projects[indexCount].dates);
-      $(".project-entry:last").append(formattedProjectDates);
-
-      var formattedProjectDescription = HTMLprojectDescription.replace("%data%", projects.projects[indexCount].description);
-      $(".project-entry:last").append(formattedProjectDescription);
-
-      for (var imageIndexCount = 0; imageIndexCount < projects.projects[indexCount].images.length; imageIndexCount++){
-        var formattedProjectImage = HTMLprojectImage.replace("%data%", projects.projects[indexCount].images[imageIndexCount]);
-        $(".project-entry:last").append(formattedProjectImage);
-      }
-    }
-  }
-}
+/**
+* @description inserts a google map element in the website
+* which displays locations I have worked and lived.
+*/
+$("#mapDiv").append(googleMap);
 
 bio.display();
 work.display();
